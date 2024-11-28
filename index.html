@@ -5,67 +5,91 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Student Club Website</title>
   <style>
-    /* General Styling */
     body {
-      margin: 0;
-      font-family: 'Arial', sans-serif;
+      font-family: Arial, sans-serif;
       background-color: #0d1117;
       color: #c9d1d9;
-      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
     }
 
     header {
-      padding: 20px;
       text-align: center;
+      padding: 20px;
       background-color: #161b22;
-      border-bottom: 1px solid #30363d;
+      border-bottom: 2px solid #30363d;
     }
 
     header h1 {
-      font-size: 2.5rem;
+      font-size: 2.5em;
       color: #58a6ff;
     }
 
-    section {
-      padding: 50px 20px;
+    nav {
+      display: flex;
+      justify-content: center;
+      padding: 10px 0;
+      background-color: #0d1117;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #58a6ff;
+      margin: 0 15px;
+      font-size: 1.2em;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #c9d1d9;
+    }
+
+    .section {
+      padding: 40px 20px;
+    }
+
+    .section h2 {
+      text-align: center;
+      font-size: 2em;
+      margin-bottom: 20px;
+      color: #58a6ff;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      border: 2px solid #30363d;
     }
 
     .team {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 30px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
     }
 
-    footer {
-      text-align: center;
-      padding: 10px;
-      background-color: #161b22;
-      border-top: 1px solid #30363d;
-      color: #8b949e;
-    }
-
-    /* Team Member Card */
+    /* Card Animation */
     .card {
       position: relative;
       width: 190px;
       height: 254px;
       background: #f00;
+      margin: auto;
       display: flex;
       justify-content: center;
       align-items: center;
+      border-radius: 10px;
     }
 
-    .card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(315deg, #03a9f4, #ff0058);
-    }
-
+    .card::before,
     .card::after {
       content: '';
       position: absolute;
@@ -74,6 +98,10 @@
       width: 100%;
       height: 100%;
       background: linear-gradient(315deg, #03a9f4, #ff0058);
+      z-index: 1;
+    }
+
+    .card::after {
       filter: blur(30px);
     }
 
@@ -82,26 +110,27 @@
       inset: 6px;
       background: rgba(0, 0, 0, 0.6);
       z-index: 2;
+      border-radius: 8px;
     }
 
     .card img {
       position: absolute;
       z-index: 3;
-      scale: 0.8;
+      width: 80%;
       opacity: 0.25;
       transition: 0.5s;
+      border-radius: 50%;
     }
 
     .card:hover img {
-      scale: 0.5;
-      opacity: 0.9;
       transform: translateY(-70px);
+      opacity: 0.9;
     }
 
     .card .content {
       position: absolute;
-      z-index: 3;
       bottom: 0;
+      z-index: 3;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -115,87 +144,78 @@
     }
 
     .content .title {
-      position: relative;
       color: #fff;
-      font-weight: 500;
-      line-height: 1em;
-      font-size: 1em;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
+      font-weight: bold;
+      font-size: 1.2em;
       text-align: center;
     }
 
-    .content .title span {
-      font-weight: 300;
-      font-size: 0.70em;
-    }
-
-    .content .sci {
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 8px;
-      margin-top: 5px;
-    }
-
-    .sci li {
-      list-style: none;
-    }
-
-    .sci li a {
-      position: relative;
-      text-decoration: none;
-      color: rgba(255, 255, 255, 0.5);
-      background: rgba(0, 0, 0, 0.2);
-      fill: currentColor;
-      width: 30px;
-      height: 30px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 4px;
-      transition: 0.5s;
-    }
-
-    .sci li a:hover {
-      fill: currentColor;
-      color: rgba(255, 255, 255, 1);
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #161b22;
+      color: #8b949e;
+      border-top: 2px solid #30363d;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Pixelated Project Club</h1>
+    <h1>Student Club</h1>
   </header>
   
-  <section>
-    <h2>About Us</h2>
-    <p>Welcome to the Pixelated Project Club! We are a community of students dedicated to innovative projects. Join us to build amazing things.</p>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#team">Team</a>
+  </nav>
+
+  <section id="about" class="section">
+    <h2>About Our Club</h2>
+    <p>Welcome to our Student Club! We focus on innovative projects, collaboration, and building a community of tech enthusiasts.</p>
   </section>
 
-  <section>
-    <h2>Team</h2>
+  <section id="gallery" class="section">
+    <h2>Gallery</h2>
+    <div class="gallery">
+      <img src="https://via.placeholder.com/300" alt="Event 1">
+      <img src="https://via.placeholder.com/300" alt="Event 2">
+      <img src="https://via.placeholder.com/300" alt="Event 3">
+      <img src="https://via.placeholder.com/300" alt="Event 4">
+    </div>
+  </section>
+
+  <section id="team" class="section">
+    <h2>Meet the Team</h2>
     <div class="team">
-      <!-- Team Member Card -->
       <div class="card">
         <b></b>
         <img src="https://via.placeholder.com/150" alt="Team Member">
         <div class="content">
-          <p class="title">John Doe<br><span>Creative Designer</span></p>
-          <ul class="sci">
-            <li><a href="#"><svg>...</svg></a></li>
-            <li><a href="#"><svg>...</svg></a></li>
-            <li><a href="#"><svg>...</svg></a></li>
-          </ul>
+          <p class="title">John Doe<br><span>Project Lead</span></p>
         </div>
       </div>
-      <!-- Repeat for more members -->
+
+      <div class="card">
+        <b></b>
+        <img src="https://via.placeholder.com/150" alt="Team Member">
+        <div class="content">
+          <p class="title">Jane Smith<br><span>Developer</span></p>
+        </div>
+      </div>
+
+      <div class="card">
+        <b></b>
+        <img src="https://via.placeholder.com/150" alt="Team Member">
+        <div class="content">
+          <p class="title">Emily Johnson<br><span>Designer</span></p>
+        </div>
+      </div>
     </div>
   </section>
 
   <footer>
-    <p>&copy; 2024 Pixelated Project Club. All rights reserved.</p>
+    <p>&copy; 2024 Student Club. All rights reserved.</p>
   </footer>
 </body>
 </html>
