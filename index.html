@@ -59,6 +59,50 @@
       margin-top: 20px;
     }
 
+    /* Pop-up Message Styles */
+    .welcome-popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: linear-gradient(45deg, #ff6f61, #ff3d3d, #ff6f61);
+      background-size: 200% 200%;
+      color: #fff;
+      font-size: 24px;
+      font-weight: bold;
+      padding: 20px 30px;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      text-align: center;
+      z-index: 9999;
+      animation: lightPulse 3s infinite, fadeOut 3s forwards;
+    }
+
+    @keyframes lightPulse {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    @keyframes fadeOut {
+      0% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 0.1;
+      }
+      100% {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+
     /* Club Description */
     .description {
       margin: 20px 0;
@@ -197,6 +241,11 @@
   </style>
 </head>
 <body>
+  <!-- Welcome Popup -->
+  <div class="welcome-popup" id="welcomePopup">
+    Welcome to Innovators' Club!
+  </div>
+
   <div class="container">
     <header class="club-header">
       <h1>Welcome to the <span>Innovators' Club</span>!</h1>
@@ -256,6 +305,11 @@
         </div>`;
       team.innerHTML += newMember;
     }
+
+    // Welcome Popup Timeout
+    setTimeout(() => {
+      document.getElementById('welcomePopup').style.display = 'none';
+    }, 3000);
   </script>
 </body>
 </html>
