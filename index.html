@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Coding Club</title>
+  <!-- Spline Viewer Script -->
   <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.46/build/spline-viewer.js"></script>
   <style>
     /* Global styles */
@@ -12,6 +13,8 @@
       padding: 0;
       font-family: Arial, sans-serif;
       color: white;
+      height: 100%;
+      overflow: hidden;
     }
 
     /* New Background Pattern */
@@ -35,6 +38,7 @@
           var(--color) var(--gap)
         );
       background-size: var(--gap) var(--gap);
+      position: relative;
     }
 
     /* Section styles */
