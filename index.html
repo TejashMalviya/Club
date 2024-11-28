@@ -13,6 +13,7 @@
       font-family: Arial, sans-serif;
       color: white;
       background: #000000;
+      overflow: hidden;
     }
 
     /* Background pattern */
@@ -106,9 +107,51 @@
     .contact button:hover {
       background-color: #0056b3;
     }
+
+    /* Snowfall effect */
+    .snowflake {
+      position: absolute;
+      top: -10px;
+      pointer-events: none;
+      font-size: 1.5em;
+      color: #fff;
+      opacity: 0.8;
+      animation: snowfall linear infinite;
+    }
+
+    @keyframes snowfall {
+      to {
+        transform: translateY(100vh);
+      }
+    }
+
+    /* Snowfall - Random delays and speeds */
+    .snowflake:nth-child(odd) {
+      animation-duration: 10s;
+      animation-delay: -5s;
+    }
+
+    .snowflake:nth-child(even) {
+      animation-duration: 12s;
+      animation-delay: -3s;
+    }
   </style>
 </head>
 <body>
+  <!-- Snowfall effect HTML -->
+  <div class="snowflakes">
+    <span class="snowflake">❄️</span>
+    <span class="snowflake">❄️</span>
+    <span class="snowflake">❄️</span>
+    <span class="snowflake">❄️</span>
+    <span class="snowflake">❄️</span>
+    <span class="snowflake">❄️</span>
+    <span class="snowflake">❄️</span>
+    <span class="snowflake">❄️</span>
+    <span class="snowflake">❄️</span>
+    <span class="snowflake">❄️</span>
+  </div>
+
   <!-- Background Pattern -->
   <div class="container">
     <!-- First Page: Spline Viewer -->
@@ -146,5 +189,22 @@
       </div>
     </section>
   </div>
+
+  <script>
+    // JavaScript to generate more snowflakes dynamically
+    function createSnowflakes() {
+      for (let i = 0; i < 50; i++) {
+        let snowflake = document.createElement('span');
+        snowflake.classList.add('snowflake');
+        snowflake.innerText = '❄️';
+        snowflake.style.left = `${Math.random() * 100}vw`;
+        snowflake.style.animationDuration = `${Math.random() * 5 + 5}s`;
+        snowflake.style.animationDelay = `${Math.random() * 5}s`;
+        document.body.appendChild(snowflake);
+      }
+    }
+
+    createSnowflakes(); // Call the function to generate snowflakes
+  </script>
 </body>
 </html>
