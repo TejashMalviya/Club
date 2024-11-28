@@ -24,7 +24,7 @@
       background: #000000;
       --gap: 5em;
       --line: 1px;
-      --color: rgba(255, 255, 255, 0.2);
+      --color: rgba(255, 255, 255, 0.1);
 
       background-image: linear-gradient(
           -90deg,
@@ -59,26 +59,26 @@
       margin-top: 20px;
     }
 
-    /* Pop-up Message Styles */
+    /* Welcome Popup Styles */
     .welcome-popup {
       position: fixed;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background: linear-gradient(45deg, #ff6f61, #ff3d3d, #ff6f61);
-      background-size: 200% 200%;
-      color: #fff;
-      font-size: 24px;
+      background: linear-gradient(45deg, #1a1a1a, #333333, #1a1a1a);
+      background-size: 400% 400%;
+      color: #ffffff;
+      font-size: 28px;
       font-weight: bold;
-      padding: 20px 30px;
+      padding: 30px 40px;
       border-radius: 10px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
       text-align: center;
       z-index: 9999;
-      animation: lightPulse 3s infinite, fadeOut 3s forwards;
+      animation: darkPulse 3s infinite, fadeOut 3s forwards;
     }
 
-    @keyframes lightPulse {
+    @keyframes darkPulse {
       0% {
         background-position: 0% 50%;
       }
@@ -182,27 +182,6 @@
       font-size: 20px;
     }
 
-    /* Add Member Section */
-    .add-member {
-      margin: 20px 0;
-      text-align: center;
-    }
-
-    .add-member button {
-      padding: 10px 20px;
-      font-size: 16px;
-      border: none;
-      background: #ff6f61;
-      color: #fff;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-
-    .add-member button:hover {
-      background: #ff3d3d;
-    }
-
     /* Contact Section */
     .contact {
       margin: 20px 0;
@@ -273,11 +252,6 @@
       </div>
     </section>
 
-    <!-- Add Member Section -->
-    <section class="add-member">
-      <button onclick="addNewMember()">Add New Team Member</button>
-    </section>
-
     <!-- Contact Section -->
     <section class="contact">
       <h2>Contact Us</h2>
@@ -289,23 +263,6 @@
   </div>
 
   <script>
-    function addNewMember() {
-      const team = document.querySelector('.team');
-      const newMember = `
-        <div class="team-card">
-          <img src="https://via.placeholder.com/250x300" alt="New Member">
-          <div class="team-details">
-            <h3>New Member</h3>
-            <p>Skills: Creativity, Problem Solving</p>
-            <div class="social-links">
-              <a href="#">GitHub</a>
-              <a href="#">LinkedIn</a>
-            </div>
-          </div>
-        </div>`;
-      team.innerHTML += newMember;
-    }
-
     // Welcome Popup Timeout
     setTimeout(() => {
       document.getElementById('welcomePopup').style.display = 'none';
