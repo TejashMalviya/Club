@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Coding Club</title>
+  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.46/build/spline-viewer.js"></script>
   <style>
     /* Global styles */
     body, html {
@@ -37,16 +38,11 @@
       position: relative;
     }
 
-    /* Spline iframe */
-    .iframe-container {
+    /* Spline Viewer Container */
+    spline-viewer {
       width: 100%;
       height: 100vh;
-    }
-
-    iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
+      display: block;
     }
 
     /* Section styles */
@@ -116,10 +112,8 @@
 <body>
   <!-- Background Pattern -->
   <div class="container">
-    <!-- First Page: Spline Design -->
-    <div class="iframe-container">
-      <iframe src='https://my.spline.design/nexbotrobotcharacterconcept-24fe9e1e502b09ed0cf5ee9c307d9184/' frameborder='0' width='100%' height='100%'></iframe>
-    </div>
+    <!-- First Page: Spline Viewer -->
+    <spline-viewer url="https://prod.spline.design/YCLMY88OFTnt8keh/scene.splinecode"></spline-viewer>
 
     <!-- Second Page: About Section -->
     <section id="about">
