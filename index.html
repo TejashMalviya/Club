@@ -5,27 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Student Club Website</title>
   <style>
-    /* General Styles */
+    /* Global Styles */
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      color: #f0f0f0;
-      overflow-x: hidden;
+      font-family: 'Arial', sans-serif;
+      background: #000;
+      color: #fff;
     }
 
-    /* Background Pattern */
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
+    /* Abstract Background */
+    .container {
       width: 100%;
       height: 100%;
-      background: #000000;
+      background: #000;
       --gap: 5em;
       --line: 1px;
       --color: rgba(255, 255, 255, 0.2);
-
       background-image: linear-gradient(
           -90deg,
           transparent calc(var(--gap) - var(--line)),
@@ -39,223 +34,226 @@
           var(--color) var(--gap)
         );
       background-size: var(--gap) var(--gap);
-      z-index: -1;
     }
 
-    h1, h2, p {
-      text-align: center;
-    }
-
-    .container {
-      width: 90%;
-      margin: auto;
-    }
-
-    .club-header {
-      padding: 20px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-      margin-top: 20px;
-    }
-
-    /* Club Description */
-    .description {
-      margin: 20px 0;
-      font-size: 18px;
-      line-height: 1.6;
-      text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.3);
-    }
-
-    .description span {
-      color: #ff6f61;
-      font-weight: bold;
-    }
-
-    /* Team Section */
-    .team {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-      margin: 20px 0;
-    }
-
-    .team-card {
-      position: relative;
-      width: 250px;
-      height: 300px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 15px;
-      overflow: hidden;
-      cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .team-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-    }
-
-    .team-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .team-details {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.8);
-      color: #fff;
+    /* Welcome Notification */
+    .notification {
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      isolation: isolate;
+      position: fixed;
+      top: 20%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 18rem;
+      height: 8rem;
+      background: #29292c;
+      border-radius: 1rem;
+      overflow: hidden;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      font-size: 16px;
+      --gradient: linear-gradient(to bottom, #2eadff, #3d83ff, #7e61ff);
+      --color: #32a6ff;
+      z-index: 1000;
       opacity: 0;
-      transition: opacity 0.3s ease;
+      animation: fadeIn 1s forwards;
     }
 
-    .team-card:hover .team-details {
-      opacity: 1;
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
     }
 
-    .team-details h3 {
-      margin-bottom: 10px;
+    .notification:before {
+      position: absolute;
+      content: '';
+      inset: 0.0625rem;
+      border-radius: 0.9375rem;
+      background: #18181b;
+      z-index: 2;
     }
 
-    .team-details p {
-      margin: 5px 0;
+    .notititle {
+      color: var(--color);
+      padding: 0.65rem 0.25rem 0.4rem 1.25rem;
+      font-weight: 500;
+      font-size: 1.1rem;
     }
 
-    .social-links a {
-      margin: 0 5px;
-      text-decoration: none;
-      color: #ff6f61;
+    .notibody {
+      color: #99999d;
+      padding: 0 1.25rem;
+    }
+
+    /* Close Button */
+    .close-notification {
+      position: absolute;
+      top: 5px;
+      right: 10px;
+      cursor: pointer;
+      color: var(--color);
       font-size: 20px;
     }
 
-    /* Add Member Section */
-    .add-member {
-      margin: 20px 0;
+    /* Header Section */
+    header {
       text-align: center;
+      padding: 2rem;
     }
 
-    .add-member button {
-      padding: 10px 20px;
-      font-size: 16px;
-      border: none;
-      background: #ff6f61;
-      color: #fff;
-      border-radius: 5px;
+    header h1 {
+      font-size: 3rem;
+      background: linear-gradient(to right, #ff6a00, #ee0979);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      color: #ccc;
+    }
+
+    /* Team Section */
+    .team-section {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      padding: 2rem;
+    }
+
+    .team-card {
+      background: #1c1c1f;
+      border-radius: 10px;
+      padding: 1rem;
+      width: 250px;
+      text-align: center;
       cursor: pointer;
-      transition: background 0.3s ease;
+      transition: transform 0.3s;
     }
 
-    .add-member button:hover {
-      background: #ff3d3d;
+    .team-card:hover {
+      transform: scale(1.05);
     }
 
-    /* Contact Section */
-    .contact {
-      margin: 20px 0;
-      text-align: center;
+    .team-card img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin-bottom: 1rem;
     }
 
-    .contact input,
-    .contact textarea,
-    .contact button {
+    .team-card h3 {
+      color: #ff6a00;
+      margin: 0.5rem 0;
+    }
+
+    .team-details {
+      display: none;
+      color: #ccc;
+    }
+
+    .team-card.active .team-details {
       display: block;
-      margin: 10px auto;
-      width: 80%;
-      max-width: 400px;
-      padding: 10px;
-      font-size: 16px;
     }
 
-    .contact input,
-    .contact textarea {
-      border: none;
-      border-radius: 5px;
+    /* Contact Form */
+    .contact-section {
+      padding: 2rem;
+      background: linear-gradient(45deg, #0f2027, #203a43, #2c5364);
+      text-align: center;
     }
 
-    .contact button {
-      background: #ff6f61;
+    .contact-section h2 {
       color: #fff;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background 0.3s ease;
     }
 
-    .contact button:hover {
-      background: #ff3d3d;
+    .contact-section form {
+      margin-top: 1rem;
+    }
+
+    .contact-section input,
+    .contact-section textarea,
+    .contact-section button {
+      width: 80%;
+      margin: 0.5rem auto;
+      padding: 0.7rem;
+      border: none;
+      border-radius: 5px;
+    }
+
+    .contact-section button {
+      background: #ff6a00;
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .contact-section button:hover {
+      background: #ee0979;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header class="club-header">
-      <h1>Welcome to the <span>Innovators' Club</span>!</h1>
-      <p class="description">
-        We are a team of passionate individuals who believe in <span>project-based learning</span>. Join us to 
-        explore, innovate, and create amazing projects together. Let's turn ideas into reality!
-      </p>
-    </header>
+  <div class="container"></div>
 
-    <!-- Team Section -->
-    <section>
-      <h2>Meet Our Team</h2>
-      <div class="team">
-        <div class="team-card">
-          <img src="https://via.placeholder.com/250x300" alt="Team Member">
-          <div class="team-details">
-            <h3>John Doe</h3>
-            <p>Skills: Web Development, UI/UX</p>
-            <div class="social-links">
-              <a href="#">GitHub</a>
-              <a href="#">LinkedIn</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Add Member Section -->
-    <section class="add-member">
-      <button onclick="addNewMember()">Add New Team Member</button>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact">
-      <h2>Contact Us</h2>
-      <input type="text" placeholder="Your Name">
-      <input type="email" placeholder="Your Email">
-      <textarea rows="4" placeholder="Your Message"></textarea>
-      <button>Send Message</button>
-    </section>
+  <!-- Welcome Notification -->
+  <div class="notification">
+    <div class="close-notification">&times;</div>
+    <div class="notititle">Welcome to Student Club</div>
+    <div class="notibody">Project-Based Learning for Future Leaders</div>
   </div>
 
+  <!-- Header -->
+  <header>
+    <h1>Welcome to the Student Club</h1>
+    <p>Empowering students with real-world skills through project-based learning.</p>
+  </header>
+
+  <!-- Team Section -->
+  <section class="team-section">
+    <div class="team-card">
+      <img src="https://via.placeholder.com/100" alt="Team Member">
+      <h3>John Doe</h3>
+      <div class="team-details">
+        <p>Skills: Web Development, AI</p>
+        <p>Social: <a href="#">LinkedIn</a></p>
+      </div>
+    </div>
+    <div class="team-card">
+      <img src="https://via.placeholder.com/100" alt="Team Member">
+      <h3>Jane Smith</h3>
+      <div class="team-details">
+        <p>Skills: Graphic Design, UI/UX</p>
+        <p>Social: <a href="#">Instagram</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact-section">
+    <h2>Contact Us</h2>
+    <form>
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea placeholder="Your Message" rows="4" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
   <script>
-    function addNewMember() {
-      const team = document.querySelector('.team');
-      const newMember = `
-        <div class="team-card">
-          <img src="https://via.placeholder.com/250x300" alt="New Member">
-          <div class="team-details">
-            <h3>New Member</h3>
-            <p>Skills: Creativity, Problem Solving</p>
-            <div class="social-links">
-              <a href="#">GitHub</a>
-              <a href="#">LinkedIn</a>
-            </div>
-          </div>
-        </div>`;
-      team.innerHTML += newMember;
-    }
+    // Close Notification
+    document.querySelector('.close-notification').addEventListener('click', function () {
+      document.querySelector('.notification').style.display = 'none';
+    });
+
+    // Toggle Team Details
+    document.querySelectorAll('.team-card').forEach(card => {
+      card.addEventListener('click', () => {
+        card.classList.toggle('active');
+      });
+    });
   </script>
 </body>
 </html>
