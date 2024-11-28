@@ -3,11 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Your Website Title</title>
-
-  <!-- Spline Viewer Script -->
+  <title>Coding Club</title>
   <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.46/build/spline-viewer.js"></script>
-
   <style>
     /* Global styles */
     body, html {
@@ -15,15 +12,13 @@
       padding: 0;
       font-family: Arial, sans-serif;
       color: white;
-      height: 100%;
-      overflow: hidden;
+      background: #000000;
     }
 
-    /* New Background Pattern */
+    /* Background pattern */
     .container {
       width: 100%;
       height: 100%;
-      background: #000000;
       --gap: 5em;
       --line: 1px;
       --color: rgba(255, 255, 255, 0.2);
@@ -40,7 +35,13 @@
           var(--color) var(--gap)
         );
       background-size: var(--gap) var(--gap);
-      position: relative;
+    }
+
+    /* Spline Viewer Container */
+    spline-viewer {
+      width: 100%;
+      height: 100vh;
+      display: block;
     }
 
     /* Section styles */
@@ -108,41 +109,42 @@
   </style>
 </head>
 <body>
+  <!-- Background Pattern -->
+  <div class="container">
+    <!-- First Page: Spline Viewer -->
+    <spline-viewer url="https://prod.spline.design/YCLMY88OFTnt8keh/scene.splinecode"></spline-viewer>
 
-  <!-- Spline Viewer Section -->
-  <spline-viewer url="https://prod.spline.design/YCLMY88OFTnt8keh/scene.splinecode"></spline-viewer>
+    <!-- Second Page: About Section -->
+    <section id="about">
+      <h1>Welcome to the Coding Club</h1>
+      <p>Our club is based on project-based learning where students work on real-world projects to enhance their coding skills and creativity. Join us to learn, collaborate, and grow!</p>
+    </section>
 
-  <!-- First Page: About Section -->
-  <section id="about">
-    <h1>Welcome to the Coding Club</h1>
-    <p>Our club is based on project-based learning where students work on real-world projects to enhance their coding skills and creativity. Join us to learn, collaborate, and grow!</p>
-  </section>
-
-  <!-- Team Section -->
-  <section id="team">
-    <h2>Meet Our Team</h2>
-    <div class="team">
-      <!-- Team Member Card -->
-      <div class="team-card">
-        <img src="https://via.placeholder.com/100" alt="Tejash Malviya">
-        <h3>Tejash Malviya</h3>
-        <p>Team Leader</p>
-        <p>Full Stack Web Development</p>
+    <!-- Team Section -->
+    <section id="team">
+      <h2>Meet Our Team</h2>
+      <div class="team">
+        <!-- Team Member Card -->
+        <div class="team-card">
+          <img src="https://via.placeholder.com/100" alt="Tejash Malviya">
+          <h3>Tejash Malviya</h3>
+          <p>Team Leader</p>
+          <p>Full Stack Web Development</p>
+        </div>
+        <!-- Add more team members as needed -->
       </div>
-      <!-- Add more team members as needed -->
-    </div>
-  </section>
+    </section>
 
-  <!-- Contact Section -->
-  <section id="contact">
-    <h2>Contact Us</h2>
-    <div class="contact">
-      <input type="text" placeholder="Your Name">
-      <input type="email" placeholder="Your Email">
-      <textarea rows="5" placeholder="Your Message"></textarea>
-      <button>Send Message</button>
-    </div>
-  </section>
-
+    <!-- Contact Section -->
+    <section id="contact">
+      <h2>Contact Us</h2>
+      <div class="contact">
+        <input type="text" placeholder="Your Name">
+        <input type="email" placeholder="Your Email">
+        <textarea rows="5" placeholder="Your Message"></textarea>
+        <button>Send Message</button>
+      </div>
+    </section>
+  </div>
 </body>
 </html>
