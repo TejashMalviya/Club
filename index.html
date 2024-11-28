@@ -3,25 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Coding Club Website</title>
+  <title>Coding Club</title>
+  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.46/build/spline-viewer.js"></script>
   <style>
-    /* Basic styles */
+    /* Global styles */
     body, html {
-      height: 100%;
       margin: 0;
+      padding: 0;
       font-family: Arial, sans-serif;
-      overflow: hidden; /* Prevent scrolling */
+      color: white;
+      background: #000000;
     }
 
-    /* Background pattern from Uiverse.io by qhns3 */
+    /* Background pattern */
     .container {
       width: 100%;
       height: 100%;
-      background: #000000;
       --gap: 5em;
       --line: 1px;
       --color: rgba(255, 255, 255, 0.2);
-
       background-image: linear-gradient(
           -90deg,
           transparent calc(var(--gap) - var(--line)),
@@ -35,162 +35,116 @@
           var(--color) var(--gap)
         );
       background-size: var(--gap) var(--gap);
-      animation: move 4s linear infinite;
     }
 
-    /* Animation for background movement */
-    @keyframes move {
-      0% {
-        background-position: 0 0;
-      }
-      100% {
-        background-position: 40px 40px;
-      }
-    }
-
-    /* Spline Viewer setup */
+    /* Spline Viewer Container */
     spline-viewer {
-      position: absolute;
-      top: 0;
-      left: 0;
       width: 100%;
-      height: 100%;
+      height: 100vh;
+      display: block;
     }
 
-    /* Style for main content */
-    .content {
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100%;
-      z-index: 10;
-      color: white;
+    /* Section styles */
+    section {
+      padding: 60px 20px;
       text-align: center;
     }
 
-    .content h1 {
-      font-size: 2rem;
-      padding: 20px;
-    }
-
-    /* Styling the team section */
     .team {
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
-      padding: 50px 0;
+      gap: 20px;
     }
 
-    .team-member {
-      width: 200px;
-      height: 200px;
-      background: #333;
-      color: white;
-      margin: 20px;
+    .team-card {
+      background: rgba(255, 255, 255, 0.1);
       border-radius: 10px;
-      text-align: center;
       padding: 20px;
-      transition: transform 0.3s ease;
+      width: 200px;
+      text-align: center;
       cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .team-member:hover {
-      transform: scale(1.1);
+    .team-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
     }
 
-    .team-member img {
-      width: 80px;
-      height: 80px;
+    .team-card img {
+      width: 100px;
+      height: 100px;
       border-radius: 50%;
       margin-bottom: 10px;
     }
 
     .contact {
       display: flex;
-      justify-content: center;
-      padding: 50px 0;
-    }
-
-    .contact form {
-      display: flex;
       flex-direction: column;
       align-items: center;
     }
 
     .contact input, .contact textarea {
-      margin: 10px;
-      padding: 10px;
       width: 300px;
+      padding: 10px;
+      margin: 10px 0;
       border: none;
       border-radius: 5px;
     }
 
     .contact button {
-      padding: 10px 20px;
-      background-color: #f39c12;
+      background-color: #007BFF;
       color: white;
       border: none;
+      padding: 10px 20px;
       border-radius: 5px;
       cursor: pointer;
+      transition: background-color 0.3s ease;
     }
 
     .contact button:hover {
-      background-color: #e67e22;
+      background-color: #0056b3;
     }
-
   </style>
 </head>
 <body>
+  <!-- Background Pattern -->
+  <div class="container">
+    <!-- First Page: Spline Viewer -->
+    <spline-viewer url="https://prod.spline.design/YCLMY88OFTnt8keh/scene.splinecode"></spline-viewer>
 
-  <!-- Spline Viewer -->
-  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.46/build/spline-viewer.js"></script>
-  <spline-viewer url="https://prod.spline.design/YCLMY88OFTnt8keh/scene.splinecode"></spline-viewer>
+    <!-- Second Page: About Section -->
+    <section id="about">
+      <h1>Welcome to the Coding Club</h1>
+      <p>Our club is based on project-based learning where students work on real-world projects to enhance their coding skills and creativity. Join us to learn, collaborate, and grow!</p>
+    </section>
 
-  <!-- Main Content -->
-  <div class="content">
-    <h1>Welcome to the Coding Club</h1>
+    <!-- Team Section -->
+    <section id="team">
+      <h2>Meet Our Team</h2>
+      <div class="team">
+        <!-- Team Member Card -->
+        <div class="team-card">
+          <img src="https://via.placeholder.com/100" alt="Tejash Malviya">
+          <h3>Tejash Malviya</h3>
+          <p>Team Leader</p>
+          <p>Full Stack Web Development</p>
+        </div>
+        <!-- Add more team members as needed -->
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+      <h2>Contact Us</h2>
+      <div class="contact">
+        <input type="text" placeholder="Your Name">
+        <input type="email" placeholder="Your Email">
+        <textarea rows="5" placeholder="Your Message"></textarea>
+        <button>Send Message</button>
+      </div>
+    </section>
   </div>
-
-  <!-- Team Section -->
-  <div class="team">
-    <div class="team-member">
-      <img src="https://via.placeholder.com/80" alt="Tejash">
-      <h3>Tejash Malviya</h3>
-      <p>Full Stack Web Development</p>
-    </div>
-    <!-- Add more team members here -->
-  </div>
-
-  <!-- Contact Us Section -->
-  <div class="contact">
-    <form action="mailto:your-email@example.com" method="POST" enctype="multipart/form-data">
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="email" placeholder="Your Email" required>
-      <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
-      <button type="submit">Contact Us</button>
-    </form>
-  </div>
-
-  <script>
-    // Swipe detection logic
-    let touchStartY = 0;
-    let touchEndY = 0;
-
-    const content = document.querySelector('.content');
-
-    content.addEventListener('touchstart', (e) => {
-      touchStartY = e.changedTouches[0].screenY;
-    });
-
-    content.addEventListener('touchend', (e) => {
-      touchEndY = e.changedTouches[0].screenY;
-
-      if (touchStartY - touchEndY > 100) { // Adjust this value to control swipe sensitivity
-        alert('Swipe Up Detected!');
-        // You can trigger other actions here like showing new content or navigating
-      }
-    });
-  </script>
-
 </body>
 </html>
