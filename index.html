@@ -9,9 +9,37 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #1e1e2e, #3e3e5e);
       color: #f0f0f0;
       overflow-x: hidden;
+    }
+
+    /* Background Pattern */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000000;
+      --gap: 5em;
+      --line: 1px;
+      --color: rgba(255, 255, 255, 0.2);
+
+      background-image: linear-gradient(
+          -90deg,
+          transparent calc(var(--gap) - var(--line)),
+          var(--color) calc(var(--gap) - var(--line) + 1px),
+          var(--color) var(--gap)
+        ),
+        linear-gradient(
+          0deg,
+          transparent calc(var(--gap) - var(--line)),
+          var(--color) calc(var(--gap) - var(--line) + 1px),
+          var(--color) var(--gap)
+        );
+      background-size: var(--gap) var(--gap);
+      z-index: -1;
     }
 
     h1, h2, p {
@@ -193,7 +221,6 @@
             </div>
           </div>
         </div>
-        <!-- Add more team cards here -->
       </div>
     </section>
 
