@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Student Club Website</title>
+  <title>Welcome Message</title>
   <style>
     /* Global Styles */
     body {
@@ -16,7 +16,7 @@
     /* Abstract Background */
     .container {
       width: 100%;
-      height: 100%;
+      height: 100vh;
       background: #000;
       --gap: 5em;
       --line: 1px;
@@ -95,165 +95,31 @@
       color: var(--color);
       font-size: 20px;
     }
-
-    /* Header Section */
-    header {
-      text-align: center;
-      padding: 2rem;
-    }
-
-    header h1 {
-      font-size: 3rem;
-      background: linear-gradient(to right, #ff6a00, #ee0979);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    header p {
-      font-size: 1.2rem;
-      color: #ccc;
-    }
-
-    /* Team Section */
-    .team-section {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1.5rem;
-      padding: 2rem;
-    }
-
-    .team-card {
-      background: #1c1c1f;
-      border-radius: 10px;
-      padding: 1rem;
-      width: 250px;
-      text-align: center;
-      cursor: pointer;
-      transition: transform 0.3s;
-    }
-
-    .team-card:hover {
-      transform: scale(1.05);
-    }
-
-    .team-card img {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      margin-bottom: 1rem;
-    }
-
-    .team-card h3 {
-      color: #ff6a00;
-      margin: 0.5rem 0;
-    }
-
-    .team-details {
-      display: none;
-      color: #ccc;
-    }
-
-    .team-card.active .team-details {
-      display: block;
-    }
-
-    /* Contact Form */
-    .contact-section {
-      padding: 2rem;
-      background: linear-gradient(45deg, #0f2027, #203a43, #2c5364);
-      text-align: center;
-    }
-
-    .contact-section h2 {
-      color: #fff;
-    }
-
-    .contact-section form {
-      margin-top: 1rem;
-    }
-
-    .contact-section input,
-    .contact-section textarea,
-    .contact-section button {
-      width: 80%;
-      margin: 0.5rem auto;
-      padding: 0.7rem;
-      border: none;
-      border-radius: 5px;
-    }
-
-    .contact-section button {
-      background: #ff6a00;
-      color: #fff;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    .contact-section button:hover {
-      background: #ee0979;
-    }
   </style>
 </head>
 <body>
   <div class="container"></div>
 
   <!-- Welcome Notification -->
-  <div class="notification">
-    <div class="close-notification">&times;</div>
+  <div class="notification" id="welcomeMessage">
+    <div class="close-notification" onclick="closeNotification()">&times;</div>
     <div class="notititle">Welcome to Student Club</div>
     <div class="notibody">Project-Based Learning for Future Leaders</div>
   </div>
 
-  <!-- Header -->
-  <header>
-    <h1>Welcome to the Student Club</h1>
-    <p>Empowering students with real-world skills through project-based learning.</p>
-  </header>
-
-  <!-- Team Section -->
-  <section class="team-section">
-    <div class="team-card">
-      <img src="https://via.placeholder.com/100" alt="Team Member">
-      <h3>John Doe</h3>
-      <div class="team-details">
-        <p>Skills: Web Development, AI</p>
-        <p>Social: <a href="#">LinkedIn</a></p>
-      </div>
-    </div>
-    <div class="team-card">
-      <img src="https://via.placeholder.com/100" alt="Team Member">
-      <h3>Jane Smith</h3>
-      <div class="team-details">
-        <p>Skills: Graphic Design, UI/UX</p>
-        <p>Social: <a href="#">Instagram</a></p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section class="contact-section">
-    <h2>Contact Us</h2>
-    <form>
-      <input type="text" placeholder="Your Name" required>
-      <input type="email" placeholder="Your Email" required>
-      <textarea placeholder="Your Message" rows="4" required></textarea>
-      <button type="submit">Send Message</button>
-    </form>
-  </section>
-
   <script>
-    // Close Notification
-    document.querySelector('.close-notification').addEventListener('click', function () {
-      document.querySelector('.notification').style.display = 'none';
-    });
+    // Function to close notification
+    function closeNotification() {
+      document.getElementById('welcomeMessage').style.display = 'none';
+    }
 
-    // Toggle Team Details
-    document.querySelectorAll('.team-card').forEach(card => {
-      card.addEventListener('click', () => {
-        card.classList.toggle('active');
-      });
-    });
+    // Automatically hide the notification after 3 seconds
+    window.onload = function () {
+      const notification = document.getElementById('welcomeMessage');
+      setTimeout(() => {
+        notification.style.display = 'none';
+      }, 3000);
+    };
   </script>
 </body>
 </html>
