@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Club</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #0d1117;
+            color: #c9d1d9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1, h2 {
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #161b22;
+            padding: 10px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .navbar a {
+            color: #58a6ff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover {
+            color: #1f6feb;
+        }
+
+        .section {
+            padding: 80px 20px;
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            border-bottom: 1px solid #30363d;
+        }
+
+        .team-grid {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .team-member {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            background-color: #21262d;
+            border: 2px solid #30363d;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .team-member:hover {
+            transform: scale(1.1);
+            z-index: 10;
+        }
+
+        .team-member img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .team-member:hover .popup {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .popup {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #0d1117;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #30363d;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+
+        .events-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        footer {
+            padding: 20px;
+            text-align: center;
+            background-color: #161b22;
+            color: #c9d1d9;
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        footer a {
+            color: #58a6ff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="#home">Home</a>
+        <a href="#team">Team</a>
+        <a href="#gallery">Events</a>
+    </div>
+
+    <div id="home" class="section">
+        <h1>Welcome to Our Student Club</h1>
+        <p>A community where students come together to innovate, collaborate, and create amazing projects!</p>
+    </div>
+
+    <div id="team" class="section">
+        <h2>Meet the Team</h2>
+        <div class="team-grid">
+            <div class="team-member">
+                <img src="https://via.placeholder.com/150" alt="Member 1">
+                <div class="popup">
+                    <h3>John Doe</h3>
+                    <p>Project Manager</p>
+                </div>
+            </div>
+            <div class="team-member">
+                <img src="https://via.placeholder.com/150" alt="Member 2">
+                <div class="popup">
+                    <h3>Jane Smith</h3>
+                    <p>Lead Developer</p>
+                </div>
+            </div>
+            <div class="team-member">
+                <img src="https://via.placeholder.com/150" alt="Member 3">
+                <div class="popup">
+                    <h3>Michael Brown</h3>
+                    <p>UI/UX Designer</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="gallery" class="section">
+        <h2>Event Gallery</h2>
+        <div class="events-gallery">
+            <div class="gallery-item">
+                <img src="https://via.placeholder.com/400x300" alt="Event 1">
+            </div>
+            <div class="gallery-item">
+                <img src="https://via.placeholder.com/400x300" alt="Event 2">
+            </div>
+            <div class="gallery-item">
+                <img src="https://via.placeholder.com/400x300" alt="Event 3">
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2024 Student Club | <a href="https://github.com">GitHub</a></p>
+    </footer>
+</body>
+                                        </html>
