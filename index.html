@@ -218,23 +218,22 @@
       background: #ff3d3d;
     }
 
-    /* Spline Viewer Styling */
-    spline-viewer {
-      width: 100%;
-      height: 100vh;
+    /* Iframe Style */
+    iframe {
       position: fixed;
       top: 0;
       left: 0;
-      z-index: -2;
+      width: 100%;
+      height: 100%;
+      border: none;
+      z-index: -1; /* Keep the iframe behind the page content */
     }
   </style>
-  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.46/build/spline-viewer.js"></script>
-<spline-viewer url="https://prod.spline.design/JJSfd7KzUDDpyU4r/scene.splinecode"></spline-viewer>
 </head>
 <body>
-  <!-- Spline Viewer -->
-  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.46/build/spline-viewer.js"></script>
-  <spline-viewer url="https://prod.spline.design/JJSfd7KzUDDpyU4r/scene.splinecode"></spline-viewer>
+
+  <!-- Iframe (Robot Animation) -->
+  <iframe src='https://my.spline.design/robotfollowcursorforlandingpage-5a168ad83de2ca86f441a614ef119369/'></iframe>
 
   <!-- Welcome Popup -->
   <div class="welcome-popup" id="welcomePopup">
