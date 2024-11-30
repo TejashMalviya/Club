@@ -5,8 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Coding Club</title>
   <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.46/build/spline-viewer.js"></script>
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script>
+    // Email.js initialization
+    (function() {
+      emailjs.init("YOUR_USER_ID"); // Replace YOUR_USER_ID with your Email.js user ID
+    })();
+
+    function sendEmail(event) {
+      event.preventDefault();
+      const form = event.target;
+      const name = form.querySelector('[name="name"]').value;
+      const email = form.querySelector('[name="email"]').value;
+      const message = form.querySelector('[name="message"]').value;
+
+      emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
+        name: name,
+        email: email,
+        message: message,
+      }).then(() => {
+        alert("Message sent successfully!");
+        form.reset();
+      }).catch((error) => {
+        alert("Error sending message: " + error.text);
+      });
+    }
+  </script>
   <style>
-    /* Global styles */
     body, html {
       margin: 0;
       padding: 0;
@@ -15,39 +40,12 @@
       background: #000000;
     }
 
-    /* Background pattern */
     .container {
       width: 100%;
       height: 100%;
-      --gap: 5em;
-      --line: 1px;
-      --color: rgba(255, 255, 255, 0.2);
-      background-image: linear-gradient(
-          -90deg,
-          transparent calc(var(--gap) - var(--line)),
-          var(--color) calc(var(--gap) - var(--line) + 1px),
-          var(--color) var(--gap)
-        ),
-        linear-gradient(
-          0deg,
-          transparent calc(var(--gap) - var(--line)),
-          var(--color) calc(var(--gap) - var(--line) + 1px),
-          var(--color) var(--gap)
-        );
-      background-size: var(--gap) var(--gap);
-    }
-
-    /* Spline Viewer Container */
-    spline-viewer {
-      width: 100%;
-      height: 100vh;
-      display: block;
-    }
-
-    /* Section styles */
-    section {
-      padding: 60px 20px;
-      text-align: center;
+      background-image: linear-gradient(-90deg, transparent calc(5em - 1px), rgba(255, 255, 255, 0.2) calc(5em - 1px + 1px), rgba(255, 255, 255, 0.2) 5em),
+        linear-gradient(0deg, transparent calc(5em - 1px), rgba(255, 255, 255, 0.2) calc(5em - 1px + 1px), rgba(255, 255, 255, 0.2) 5em);
+      background-size: 5em 5em;
     }
 
     /* Team Section */
@@ -56,13 +54,14 @@
       justify-content: center;
       gap: 20px;
       flex-wrap: wrap;
+      margin: 40px 0;
     }
 
-    /* Flip card styles */
     .team-card {
+      perspective: 1000px;
       width: 250px;
       height: 300px;
-      perspective: 1000px;
+      cursor: pointer;
     }
 
     .team-card-inner {
@@ -71,8 +70,7 @@
       height: 100%;
       text-align: center;
       transform-style: preserve-3d;
-      transform: rotateY(0deg);
-      transition: transform 0.6s ease-in-out;
+      transition: transform 0.6s;
     }
 
     .team-card:hover .team-card-inner {
@@ -84,66 +82,79 @@
       width: 100%;
       height: 100%;
       backface-visibility: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       border-radius: 10px;
-      padding: 20px;
-      box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
     }
 
     .team-card-front {
       background: rgba(255, 255, 255, 0.1);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
     }
 
-    .team-card-front img {
+    .team-card-back {
+      background: rgba(30, 30, 30, 0.9);
+      transform: rotateY(180deg);
+    }
+
+    .team-card img {
       width: 100px;
       height: 100px;
       border-radius: 50%;
       margin-bottom: 10px;
     }
 
-    .team-card-back {
-      background: rgba(30, 30, 30, 0.9);
-      color: white;
-      transform: rotateY(180deg);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-
     .team-card-back a {
-      color: #007BFF;
+      color: #1DA1F2;
       text-decoration: none;
-      margin: 5px;
+      margin: 5px 0;
     }
 
     .team-card-back a:hover {
       text-decoration: underline;
     }
+
+    /* Contact Form */
+    .contact-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 50vh;
+    }
+
+    .contact-container form {
+      max-width: 400px;
+      width: 100%;
+    }
+
+    .contact-container input, .contact-container textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .contact-container button {
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .contact-container button:hover {
+      background-color: #0056b3;
+    }
   </style>
 </head>
 <body>
-  <!-- Background Pattern -->
   <div class="container">
-    <!-- First Page: Spline Viewer -->
     <spline-viewer url="https://prod.spline.design/s-nBwerCDp-0Uuar/scene.splinecode"></spline-viewer>
 
-    <!-- Second Page: About Section -->
-    <section id="about">
-      <h1>Welcome to the Coding Club</h1>
-      <p>Our club is based on project-based learning where students work on real-world projects to enhance their coding skills and creativity. Join us to learn, collaborate, and grow!</p>
-    </section>
-
-    <!-- Error Club Button -->
-    <div style="text-align: center;">
-      <a href="https://www.canva.com/design/DAGX2ZJjdBE/YbaLvHd046Yv2a1sB1a7FQ/view?utm_content=DAGX2ZJjdBE&utm_campaign=designshare&utm_medium=embeds&utm_source=link"
-         target="_blank" class="error-club-button">Error Club</a>
-    </div>
-
-    <!-- Team Section -->
     <section id="team">
       <h2>Meet Our Team</h2>
       <div class="team">
@@ -156,69 +167,33 @@
               <p>Team Leader</p>
             </div>
             <div class="team-card-back">
-              <p>Bio: Full Stack Web Developer, coding enthusiast.</p>
-              <a href="https://instagram.com" target="_blank">Instagram</a>
-              <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+              <p>Full Stack Developer</p>
+              <a href="#">Instagram</a>
+              <a href="#">LinkedIn</a>
             </div>
           </div>
         </div>
-
-        <!-- Add 3 more cards with similar structure -->
-        <div class="team-card">
-          <div class="team-card-inner">
-            <div class="team-card-front">
-              <img src="member1.jpg" alt="Member 1">
-              <h3>Member One</h3>
-              <p>Frontend Developer</p>
-            </div>
-            <div class="team-card-back">
-              <p>Bio: Creative designer and developer.</p>
-              <a href="https://instagram.com" target="_blank">Instagram</a>
-              <a href="https://linkedin.com" target="_blank">LinkedIn</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="team-card">
-          <div class="team-card-inner">
-            <div class="team-card-front">
-              <img src="member2.jpg" alt="Member 2">
-              <h3>Member Two</h3>
-              <p>Backend Developer</p>
-            </div>
-            <div class="team-card-back">
-              <p>Bio: Backend wizard and database expert.</p>
-              <a href="https://instagram.com" target="_blank">Instagram</a>
-              <a href="https://linkedin.com" target="_blank">LinkedIn</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="team-card">
-          <div class="team-card-inner">
-            <div class="team-card-front">
-              <img src="member3.jpg" alt="Member 3">
-              <h3>Member Three</h3>
-              <p>AI/ML Enthusiast</p>
-            </div>
-            <div class="team-card-back">
-              <p>Bio: Passionate about AI/ML innovations.</p>
-              <a href="https://instagram.com" target="_blank">Instagram</a>
-              <a href="https://linkedin.com" target="_blank">LinkedIn</a>
-            </div>
-          </div>
-        </div>
+        <!-- Add 3 more cards similarly -->
       </div>
     </section>
 
-    <!-- Contact Section -->
     <section id="contact">
-      <h2>Contact Us</h2>
-      <div class="contact">
-        <input type="text" placeholder="Your Name">
-        <input type="email" placeholder="Your Email">
-        <textarea rows="5" placeholder="Your Message"></textarea>
-        <button>Send Message</button>
+      <div class="contact-container">
+        <form onsubmit="sendEmail(event)">
+          <div>
+            <label for="name">Your Name</label>
+            <input type="text" name="name" placeholder="Enter your name" required />
+          </div>
+          <div>
+            <label for="email">Your Email</label>
+            <input type="email" name="email" placeholder="Enter your email" required />
+          </div>
+          <div>
+            <label for="message">Your Message</label>
+            <textarea name="message" placeholder="Enter your message" rows="4" required></textarea>
+          </div>
+          <button type="submit">Send Message</button>
+        </form>
       </div>
     </section>
   </div>
