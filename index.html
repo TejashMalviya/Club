@@ -5,25 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Coding Club</title>
   <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.46/build/spline-viewer.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3.10.0/dist/email.min.js"></script>
-  <script>
-    emailjs.init("zAGnrf4npjw3WwKbU");
-    function sendEmail(event) {
-      event.preventDefault();
-      const form = event.target;
-      emailjs.sendForm("service_tcnrfrb", "template_wm4gyrf", form)
-        .then(() => alert("Message sent successfully!"))
-        .catch(() => alert("Failed to send message. Try again!"));
-    }
-  </script>
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   <style>
+    /* Global styles */
     body, html {
       margin: 0;
       padding: 0;
       font-family: Arial, sans-serif;
       color: white;
-      background: linear-gradient(45deg, #141e30, #243b55);
+      background: #000000;
     }
+
+    /* Background pattern */
     .container {
       width: 100%;
       height: 100%;
@@ -44,176 +37,98 @@
         );
       background-size: var(--gap) var(--gap);
     }
+
+    /* Spline Viewer Container */
     spline-viewer {
       width: 100%;
       height: 100vh;
       display: block;
     }
+
+    /* Section styles */
     section {
       padding: 60px 20px;
       text-align: center;
-      color: #fff;
     }
-    .welcome {
-      font-size: 24px;
-      animation: fadeIn 3s ease-in-out infinite alternate;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0.5; }
-      to { opacity: 1; }
-    }
-    .team {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-    }
-    .team-card {
-      perspective: 1000px;
-      width: 200px;
-      height: 300px;
-      position: relative;
-    }
-    .team-card-inner {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      transition: transform 0.8s;
-      transform-style: preserve-3d;
-    }
-    .team-card:hover .team-card-inner {
-      transform: rotateY(180deg);
-    }
-    .team-card-front, .team-card-back {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      backface-visibility: hidden;
-      border-radius: 10px;
-      overflow: hidden;
-    }
-    .team-card-front {
-      background: rgba(255, 255, 255, 0.1);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-    .team-card-front img {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      margin-bottom: 10px;
-    }
-    .team-card-back {
-      background: #1c1c1c;
-      color: white;
-      transform: rotateY(180deg);
-      padding: 20px;
-      text-align: center;
-    }
-    .contact form {
+
+    .contact {
       display: flex;
       flex-direction: column;
       align-items: center;
     }
-    .contact input, .contact textarea, .contact button {
-      margin: 10px 0;
+
+    .contact input, .contact textarea {
+      width: 300px;
       padding: 10px;
+      margin: 10px 0;
       border: none;
       border-radius: 5px;
     }
+
     .contact button {
       background-color: #007BFF;
       color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
       cursor: pointer;
-      transition: background-color 0.3s;
+      transition: background-color 0.3s ease;
     }
+
     .contact button:hover {
       background-color: #0056b3;
-    }
-    .rules {
-      text-align: left;
-      margin: 0 auto;
-      max-width: 600px;
-    }
-    .rules ul {
-      list-style: none;
-      padding: 0;
-    }
-    .rules li {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 10px;
-      border-radius: 5px;
-      margin: 10px 0;
     }
   </style>
 </head>
 <body>
+  <!-- Background Pattern -->
   <div class="container">
+    <!-- First Page: Spline Viewer -->
     <spline-viewer url="https://prod.spline.design/s-nBwerCDp-0Uuar/scene.splinecode"></spline-viewer>
 
-    <section>
-      <h1 class="welcome">Welcome to the Coding Club!</h1>
-      <p>Empowering students to learn and create through coding.</p>
-    </section>
-
-    <section id="team">
-      <h2>Meet Our Team</h2>
-      <div class="team">
-        <div class="team-card">
-          <div class="team-card-inner">
-            <div class="team-card-front">
-              <img src="tejash.jpg" alt="Tejash Malviya">
-              <h3>Tejash Malviya</h3>
-              <p>Team Leader</p>
-            </div>
-            <div class="team-card-back">
-              <h3>Tejash Malviya</h3>
-              <p>Skills: Full Stack Web Development, AI/ML</p>
-              <p>Email: tejash@example.com</p>
-            </div>
-          </div>
-        </div>
-        <!-- Add more cards here -->
-        <div class="team-card">
-          <div class="team-card-inner">
-            <div class="team-card-front">
-              <img src="member1.jpg" alt="Member 1">
-              <h3>Member 1</h3>
-              <p>Frontend Developer</p>
-            </div>
-            <div class="team-card-back">
-              <h3>Member 1</h3>
-              <p>Skills: React, Angular</p>
-              <p>Email: member1@example.com</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
+    <!-- Contact Section -->
     <section id="contact">
       <h2>Contact Us</h2>
-      <form onsubmit="sendEmail(event)">
-        <input type="text" name="user_name" placeholder="Your Name" required>
-        <input type="email" name="user_email" placeholder="Your Email" required>
-        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-        <button type="submit">Send Message</button>
-      </form>
-    </section>
-
-    <section id="rules">
-      <h2>Club Rules & Aims</h2>
-      <div class="rules">
-        <ul>
-          <li>Collaborate on exciting projects.</li>
-          <li>Respect every member's ideas.</li>
-          <li>Never stop learning!</li>
-          <li>Our Aim: Build innovative solutions together.</li>
-        </ul>
+      <div class="contact">
+        <input id="name" type="text" placeholder="Your Name" required>
+        <input id="email" type="email" placeholder="Your Email" required>
+        <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
+        <button onclick="sendEmail()">Send Message</button>
       </div>
     </section>
   </div>
+
+  <script>
+    // Initialize Email.js
+    (function () {
+      emailjs.init("zAGnrf4npjw3WwKbU");
+    })();
+
+    // Function to send email
+    function sendEmail() {
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const message = document.getElementById("message").value;
+
+      if (!name || !email || !message) {
+        alert("Please fill out all fields.");
+        return;
+      }
+
+      const templateParams = {
+        name: name,
+        email: email,
+        message: message,
+      };
+
+      emailjs.send("service_tcnrfrb", "template_wm4gyrf", templateParams)
+        .then((response) => {
+          alert("Message sent successfully!");
+        })
+        .catch((error) => {
+          alert("Failed to send message. Please try again.");
+        });
+    }
+  </script>
 </body>
 </html>
